@@ -16,6 +16,17 @@ namespace wpf_lifecycle
             MethodBase m = MethodBase.GetCurrentMethod();
             Console.WriteLine($"Exécution de {m.ReflectedType.Name}.{m.Name}");
 
+            /// L'application quitte immédiatement après que la dernière fenêtre ferme
+            ShutdownMode = ShutdownMode.OnLastWindowClose;
+
+            /// L'application ne quitte que lorsque lorsqu'il y a appelle de
+            /// Application.Shutdown();
+            ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+            /// L'application quitte lorsque la fenêtre appelée dans le
+            /// StartupUri ferme (habituellement dans App.xaml)
+            ShutdownMode = ShutdownMode.OnMainWindowClose;
+
             base.OnStartup(e);
         }
 
